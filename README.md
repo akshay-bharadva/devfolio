@@ -2,7 +2,7 @@
 #### How to run project
 1. Clone the repository: 
     ```shell
-    git clone https://github.com/julian-gomez/memories
+    git clone https://github.com/akshay-bharadva/memories
     ```
 
 2. Add mongodb-connection-url under `back/.env` directory for `MONGODB_CONNECTION_URL` variable.
