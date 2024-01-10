@@ -1,21 +1,23 @@
-import { AppBar, Avatar, Toolbar, Typography, Button } from "@material-ui/core";
-import text from "../../images/text.png";
-import useStyles from "./styles";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import jwtDecode from "jwt-decode";
+import {
+  AppBar, Avatar, Toolbar, Typography, Button,
+} from '@material-ui/core';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import jwtDecode from 'jwt-decode';
+import useStyles from './styles';
+import text from '../../images/text.png';
 
-const NavBar = () => {
+function NavBar() {
   const classes = useStyles();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
 
   const logoutHandler = () => {
-    dispatch({ type: "LOGOUT" });
-    history.push("/");
+    dispatch({ type: 'LOGOUT' });
+    history.push('/');
     setUser(null);
   };
 
@@ -30,7 +32,7 @@ const NavBar = () => {
       }
     }
 
-    setUser(JSON.parse(localStorage.getItem("profile")));
+    setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 
   return (
@@ -74,6 +76,6 @@ const NavBar = () => {
       </Toolbar>
     </AppBar>
   );
-};
+}
 
 export default NavBar;

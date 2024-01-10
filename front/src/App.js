@@ -1,13 +1,15 @@
-import "./App.css";
-import { Container } from "@material-ui/core";
-import NavBar from "./components/NavBar/NavBar";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Auth from "./components/Auth/Auth";
-import PostDetails from "./components/PostDetails/PostDetails";
+import './App.css';
+import { Container } from '@material-ui/core';
+import {
+  BrowserRouter, Switch, Route, Redirect,
+} from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
+import Home from './components/Home/Home';
+import Auth from './components/Auth/Auth';
+import PostDetails from './components/PostDetails/PostDetails';
 
-const App = () => {
-  const user = JSON.parse(localStorage.getItem("profile"));
+function App() {
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   return (
     <BrowserRouter>
@@ -21,14 +23,12 @@ const App = () => {
           <Route
             path="/auth"
             exact
-            component={() =>
-              !user?.result ? <Auth /> : <Redirect to="/posts" />
-            }
+            component={() => (!user?.result ? <Auth /> : <Redirect to="/posts" />)}
           />
         </Switch>
       </Container>
     </BrowserRouter>
   );
-};
+}
 
 export default App;

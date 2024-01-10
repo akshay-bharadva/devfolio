@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+
 const { Schema } = mongoose;
 
 const postSchema = new Schema({
@@ -21,6 +22,6 @@ const postSchema = new Schema({
   },
 });
 
-const PostMessage = mongoose.model("PostMessage", postSchema);
+const PostMessage = mongoose.model('PostMessage', postSchema);
 
 export default PostMessage;

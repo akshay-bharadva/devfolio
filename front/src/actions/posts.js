@@ -1,5 +1,6 @@
-import * as api from "../api";
-import { ACTIONS_CONSTANTS } from "../constants/actionTypes";
+import * as api from '../api';
+import { ACTIONS_CONSTANTS } from '../constants/actionTypes';
+
 const {
   FETCH_ALL,
   FETCH_BY_SEARCH,
@@ -23,7 +24,7 @@ export const getPosts = (page) => async (dispatch) => {
     dispatch({ type: FETCH_ALL, payload: data });
     dispatch({ type: END_LOADING });
   } catch (err) {
-    console.log(err, "***error from get posts actions");
+    console.log(err, '***error from get posts actions');
   }
 };
 
@@ -36,7 +37,7 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     dispatch({ type: FETCH_BY_SEARCH, payload: data });
     dispatch({ type: END_LOADING });
   } catch (err) {
-    console.log(err, "error from get posts by search action");
+    console.log(err, 'error from get posts by search action');
   }
 };
 
@@ -47,7 +48,7 @@ export const getPost = (id) => async (dispatch) => {
     dispatch({ type: FETCH_POST, payload: data });
     dispatch({ type: END_LOADING });
   } catch (err) {
-    console.log(err, "error from get single post action");
+    console.log(err, 'error from get single post action');
   }
 };
 
@@ -59,7 +60,7 @@ export const createPost = (post, history) => async (dispatch) => {
     dispatch({ type: CREATE, payload: data });
     dispatch({ type: END_LOADING });
   } catch (err) {
-    console.log(err, "error from create post action");
+    console.log(err, 'error from create post action');
   }
 };
 
@@ -68,7 +69,7 @@ export const updatePost = (postId, updatedPostData) => async (dispatch) => {
     const { data } = await api.updatePost(postId, updatedPostData);
     dispatch({ type: UPDATE, payload: data });
   } catch (err) {
-    console.log(err, "error from update post action");
+    console.log(err, 'error from update post action');
   }
 };
 
@@ -77,7 +78,7 @@ export const deletePost = (postId) => async (dispatch) => {
     await api.deletePost(postId);
     dispatch({ type: DELETE, payload: postId });
   } catch (err) {
-    console.log(err, "error from delete post action");
+    console.log(err, 'error from delete post action');
   }
 };
 
@@ -86,7 +87,7 @@ export const likePost = (postId) => async (dispatch) => {
     const { data } = await api.likePost(postId);
     dispatch({ type: LIKE, payload: data });
   } catch (err) {
-    console.log(err, "error form like post action");
+    console.log(err, 'error form like post action');
   }
 };
 
@@ -96,6 +97,6 @@ export const commentPost = (comment, postId) => async (dispatch) => {
     dispatch({ type: COMMENT_POST, payload: data });
     return data.comments;
   } catch (err) {
-    console.log(err, "error form comment post action");
+    console.log(err, 'error form comment post action');
   }
 };

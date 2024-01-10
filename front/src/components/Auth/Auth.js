@@ -1,4 +1,3 @@
-import useStyles from "./styles";
 import {
   Avatar,
   Button,
@@ -6,25 +5,26 @@ import {
   Grid,
   Typography,
   Container,
-} from "@material-ui/core";
-import { GoogleLogin } from "react-google-login";
-import { LockOutlined } from "@material-ui/icons";
-import Input from "./Input";
-import Icon from "./Icon";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { signin, signup } from "../../actions/auth";
+} from '@material-ui/core';
+import { GoogleLogin } from 'react-google-login';
+import { LockOutlined } from '@material-ui/icons';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import Icon from './Icon';
+import Input from './Input';
+import useStyles from './styles';
+import { signin, signup } from '../../actions/auth';
 
 const initialFormState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
 };
 
-const Auth = () => {
+function Auth() {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
@@ -62,15 +62,15 @@ const Auth = () => {
     const token = res?.tokenId;
 
     try {
-      dispatch({ type: "AUTH", data: { result, token } });
-      history.push("/");
+      dispatch({ type: 'AUTH', data: { result, token } });
+      history.push('/');
     } catch (err) {
-      console.log(err, "error from googleSuccessHandler");
+      console.log(err, 'error from googleSuccessHandler');
     }
   };
 
   const googleFailureHandler = (error) => {
-    console.log(error, "Google login Failure");
+    console.log(error, 'Google login Failure');
   };
 
   return (
@@ -111,7 +111,7 @@ const Auth = () => {
             <Input
               name="password"
               label="Password"
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               handleChange={inputChangeHandler}
               handleShowPassword={showPasswordHandler}
             />
@@ -131,7 +131,7 @@ const Auth = () => {
             color="primary"
             className={classes.submit}
           >
-            {isSignup ? "Sign Up" : "Sign In"}
+            {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
           {/* <GoogleLogin
                     clientId="TODO-ADD-API-KEY.apps.googleusercontent.com"
@@ -156,7 +156,7 @@ const Auth = () => {
             <Grid item>
               <Button onClick={switchModeHandler}>
                 {isSignup
-                  ? "Already have an account? Sign In"
+                  ? 'Already have an account? Sign In'
                   : "Don't have an account? Sign Up"}
               </Button>
             </Grid>
@@ -165,6 +165,6 @@ const Auth = () => {
       </Paper>
     </Container>
   );
-};
+}
 
 export default Auth;

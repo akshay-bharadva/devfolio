@@ -1,14 +1,14 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 const auth = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization.split(' ')[1];
     // our token lower then google token (500)
     const isCustomAuth = token.length < 500;
     let decodedData;
 
     if (token && isCustomAuth) {
-      decodedData = jwt.verify(token, "test");
+      decodedData = jwt.verify(token, 'test');
       req.userId = decodedData?.id;
     } else {
       decodedData = jwt.decode(token);
@@ -17,7 +17,7 @@ const auth = async (req, res, next) => {
 
     next();
   } catch (err) {
-    console.log(err, "error form auth middleware");
+    console.log(err, 'error form auth middleware');
   }
 };
 

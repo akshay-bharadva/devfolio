@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { TextField, Button, Typography, Paper } from "@material-ui/core";
-import FileBase64 from "react-file-base64";
-import useStyles from "./styles";
-import { createPost, updatePost } from "../../actions/posts";
-import { useHistory } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  TextField, Button, Typography, Paper,
+} from '@material-ui/core';
+import FileBase64 from 'react-file-base64';
+import { useHistory } from 'react-router-dom';
+import useStyles from './styles';
+import { createPost, updatePost } from '../../actions/posts';
 
-const Form = ({ currentId, setCurrentId }) => {
+function Form({ currentId, setCurrentId }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const initialPostState = {
-    title: "",
-    message: "",
-    tags: "",
-    selectedFile: "",
+    title: '',
+    message: '',
+    tags: '',
+    selectedFile: '',
   };
   const [postData, setPostData] = useState(initialPostState);
-  const post = useSelector((state) =>
-    currentId ? state.posts.posts.find((p) => p._id === currentId) : null,
-  );
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const post = useSelector((state) => (currentId ? state.posts.posts.find((p) => p._id === currentId) : null));
+  const user = JSON.parse(localStorage.getItem('profile'));
   const history = useHistory();
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const Form = ({ currentId, setCurrentId }) => {
         onSubmit={handlerSubmit}
       >
         <Typography variant="h6">
-          {currentId ? "Editing a Memory" : "Creating a Memory"}
+          {currentId ? 'Editing a Memory' : 'Creating a Memory'}
         </Typography>
         <TextField
           name="title"
@@ -82,9 +82,7 @@ const Form = ({ currentId, setCurrentId }) => {
           multiline
           rows={4}
           value={postData.message}
-          onChange={(e) =>
-            setPostData({ ...postData, message: e.target.value })
-          }
+          onChange={(e) => setPostData({ ...postData, message: e.target.value })}
         />
         <TextField
           name="tags"
@@ -92,17 +90,13 @@ const Form = ({ currentId, setCurrentId }) => {
           label="Tags"
           fullWidth
           value={postData.tags}
-          onChange={(e) =>
-            setPostData({ ...postData, tags: e.target.value.split(",") })
-          }
+          onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}
         />
         <div className={classes.fileInput}>
           <FileBase64
             type="file"
             multilple={false}
-            onDone={({ base64 }) =>
-              setPostData({ ...postData, selectedFile: base64 })
-            }
+            onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
           />
         </div>
         <Button
@@ -127,6 +121,6 @@ const Form = ({ currentId, setCurrentId }) => {
       </form>
     </Paper>
   );
-};
+}
 
 export default Form;

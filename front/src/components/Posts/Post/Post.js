@@ -1,4 +1,3 @@
-import useStyles from "./styles";
 import {
   Card,
   CardActions,
@@ -7,20 +6,23 @@ import {
   Button,
   Typography,
   ButtonBase,
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import moment from "moment";
-import { deletePost, likePost } from "../../../actions/posts";
-import { useDispatch } from "react-redux";
-import Likes from "./Likes";
-import { useHistory } from "react-router-dom";
+} from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { deletePost, likePost } from '../../../actions/posts';
+import Likes from './Likes';
+import useStyles from './styles';
 
-const Post = ({ post, setCurrentId }) => {
+function Post({ post, setCurrentId }) {
   const classes = useStyles();
-  const { _id, name, title, message, tags, selectedFile, createdAt } = post;
+  const {
+    _id, name, title, message, tags, selectedFile, createdAt,
+  } = post;
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const user = JSON.parse(localStorage.getItem('profile'));
   const history = useHistory();
 
   const deletePostHandler = () => {
@@ -48,10 +50,10 @@ const Post = ({ post, setCurrentId }) => {
           <Typography variant="body2">{moment(createdAt).fromNow()}</Typography>
         </div>
         <div className={classes.overlay2}>
-          {(user?.result?.googleId === post?.creator ||
-            user?.result?._id === post?.creator) && (
+          {(user?.result?.googleId === post?.creator
+            || user?.result?._id === post?.creator) && (
             <Button
-              style={{ color: "white" }}
+              style={{ color: 'white' }}
               size="small"
               onClick={(e) => {
                 e.stopPropagation();
@@ -65,7 +67,8 @@ const Post = ({ post, setCurrentId }) => {
         <div className={classes.details}>
           {tags.map((tag) => (
             <Typography variant="body2" color="textSecondary">
-              #{tag}
+              #
+              {tag}
             </Typography>
           ))}
         </div>
@@ -87,8 +90,8 @@ const Post = ({ post, setCurrentId }) => {
         >
           <Likes post={post} />
         </Button>
-        {(user?.result?.googleId === post?.creator ||
-          user?.result?._id === post?.creator) && (
+        {(user?.result?.googleId === post?.creator
+          || user?.result?._id === post?.creator) && (
           <Button size="small" color="primary" onClick={deletePostHandler}>
             <DeleteIcon fontSize="small" />
             Delete
@@ -97,6 +100,6 @@ const Post = ({ post, setCurrentId }) => {
       </CardActions>
     </Card>
   );
-};
+}
 
 export default Post;

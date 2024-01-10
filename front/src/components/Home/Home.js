@@ -6,52 +6,52 @@ import {
   AppBar,
   TextField,
   Button,
-} from "@material-ui/core";
+} from '@material-ui/core';
 // import Chip from '@material-ui/core/Chip';
-import TagsInput from "../TagInput";
-import Posts from "../Posts/Posts";
-import Form from "../Form/Form";
-import useStyles from "./styles";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
-import { getPosts, getPostsBySearch } from "../../actions/posts";
-import Paginate from "../pagination";
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
+import TagsInput from '../TagInput';
+import Posts from '../Posts/Posts';
+import Form from '../Form/Form';
+import useStyles from './styles';
+import { getPosts, getPostsBySearch } from '../../actions/posts';
+import Paginate from '../pagination';
 
-const Home = () => {
+function Home() {
   const classes = useStyles();
   const [currentId, setCurrentId] = useState(null);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   // const [tags, setTags] = useState([]);
   const dispatch = useDispatch();
   const useQuery = () => new URLSearchParams(useLocation().search);
   const query = useQuery();
   const history = useHistory();
-  const page = query.get("page") || 1;
-  const searchQuery = query.get("searchQuery");
+  const page = query.get('page') || 1;
+  const searchQuery = query.get('searchQuery');
 
-  /*useEffect(() => {
+  /* useEffect(() => {
         dispatch(getPosts());
-    }, [dispatch, currentId]);*/
+    }, [dispatch, currentId]); */
 
-  //const addHandler = (tag) => setTags([...tags, tag]);
+  // const addHandler = (tag) => setTags([...tags, tag]);
 
-  //const deleteHandler = (tagToDelete) => setTags(tags.filter(tag => tag !== tagToDelete));
+  // const deleteHandler = (tagToDelete) => setTags(tags.filter(tag => tag !== tagToDelete));
 
-  const selectTagHandler = () => console.log("select tag");
+  const selectTagHandler = () => console.log('select tag');
 
   const searchPostHandler = () => {
     if (search.trim()) {
       // dispatch fetch search post
       dispatch(getPostsBySearch({ search }));
-      history.push(`/posts/search?searchQuery=${search || "none"}`);
+      history.push(`/posts/search?searchQuery=${search || 'none'}`);
     } else {
-      history.push("/");
+      history.push('/');
     }
   };
 
   const keyPressHandler = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       searchPostHandler();
     }
   };
@@ -83,7 +83,7 @@ const Home = () => {
                 value={search}
                 onKeyPress={keyPressHandler}
                 onChange={(e) => setSearch(e.target.value)}
-                style={{ margin: "10px 0" }}
+                style={{ margin: '10px 0' }}
               />
               {/* <TagsInput
                             selectedTags={selectTagHandler}
@@ -114,6 +114,6 @@ const Home = () => {
       </Container>
     </Grow>
   );
-};
+}
 
 export default Home;

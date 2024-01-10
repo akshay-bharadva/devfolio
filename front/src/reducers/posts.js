@@ -1,4 +1,5 @@
-import { ACTIONS_CONSTANTS } from "../constants/actionTypes";
+import { ACTIONS_CONSTANTS } from '../constants/actionTypes';
+
 const {
   FETCH_ALL,
   FETCH_POST,
@@ -49,9 +50,7 @@ const postsReducer = (state = { isLoading: true, posts: [] }, action) => {
     case LIKE:
       return {
         ...state,
-        posts: state.posts.map((post) =>
-          post._id === action.payload._id ? action.payload : post,
-        ),
+        posts: state.posts.map((post) => (post._id === action.payload._id ? action.payload : post)),
       };
 
     case CREATE:
@@ -63,9 +62,7 @@ const postsReducer = (state = { isLoading: true, posts: [] }, action) => {
     case UPDATE:
       return {
         ...state,
-        posts: state.posts.map((post) =>
-          post._id === action.payload._id ? action.payload : post,
-        ),
+        posts: state.posts.map((post) => (post._id === action.payload._id ? action.payload : post)),
       };
 
     case DELETE:
